@@ -43,19 +43,18 @@ def add_note():
                 }
 
                 # Update database: Add routine to the user's document
-                client = get_mongo_client()
-                if client:
-                    db = client['fitCore_user_data']
+                
+                db = st.session_state["db"]
 
-                    db.users.update_one(
-                        {"username": st.session_state["username"]},
-                        {"$push": {"routines": new_routine}},
-                        upsert=True
-                    )
-                    st.success("Routine saved!")
-                    # Clear session state after saving
-                    st.session_state["workouts"] = []
-                    st.session_state["target_input"] = ""
+                db.users.update_one(
+                    {"username": st.session_state["username"]},
+                    {"$push": {"routines": new_routine}},
+                    upsert=True
+                )
+                st.success("Routine saved!")
+                # Clear session state after saving
+                st.session_state["workouts"] = []
+                st.session_state["target_input"] = ""
         else:
             st.error("Please specify a target area and add at least one workout.")
     # Display workouts in an expander
