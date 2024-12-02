@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 def get_mongo_client():
     load_dotenv()
     try:
-        connection_string = os.getenv("CONNECTION_STRING")
+        connection_string = os.getenv(st.secrets["CONNECTION_STRING"])
         # Replace with your MongoDB Atlas connection string
         client = pymongo.MongoClient(connection_string)
         client.server_info()  # To check if the connection is successful
