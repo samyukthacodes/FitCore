@@ -1,3 +1,4 @@
 streamlit==1.40.2   
 pymongo
 python-dotenv==1.0.1
+bcrypt
